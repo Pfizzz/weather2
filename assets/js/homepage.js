@@ -12,7 +12,7 @@ const loadPage = () => {
         let savedCities = JSON.parse(window.localStorage.getItem("cityname")) || [];
         // write a for loop to iterate through this
         for (let i = 0; i < savedCities.length; i++) {
-            console.log(savedCities[i].name);
+            // console.log(savedCities[i].name);
             const loadButton = document.createElement("button");
             loadButton.textContent = savedCities[i].name;
             loadButton.classList = 'btn white-text';
@@ -43,15 +43,39 @@ const getWeatherInfo = (cityname) => {
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (data) {
-
-                    displayWeather(data, cityname);
+                    // var uvi = data.current.uvi;
+                    // console.log(uvi)
+;                    displayWeather(data, cityname);
+uvIndex(data);
                 })
             } else {
                 alert("response error with fetching weather data");
             }
         });
+
+
+ 
     getFiveWeatherInfo(cityname);
 };
+
+var uvIndex = function(weatherData){
+    
+    fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + 
+    weatherData.coord.lat +"&lon=" + 
+    weatherData.coord.lon +"&appid=" +
+    key + 
+    "&units=imperial")
+    .then(function(response) {
+        return response.json();
+      })
+      .then(function(response) {
+        //   uvData(response ,weatherData);
+          console.log(response);
+          let uvi = response.current.uvi;
+          console.log(uvi);
+          
+});
+}
 
 // function to get five day forecast
 const getFiveWeatherInfo = (cityname) => {
@@ -67,6 +91,7 @@ const getFiveWeatherInfo = (cityname) => {
                 alert("response error with get 5-day fetch request")
             }
         })
+
 };
 
 
@@ -94,7 +119,6 @@ const formSubmitHandler = (event) => {
 
 // create function to generate button in saved cities
 const generateButton = (cityname) => {
-    console.log(cityname);
     savedCityEl.classList = '';
     const cityButtonWr = document.createElement("div");
     savedCityEl.appendChild(cityButtonWr);
@@ -121,10 +145,6 @@ const displayWeather = (data, searchTerm) => {
     nd = new Date(algo)
 
     var description = data.weather[0].description;
-
-    var iconcode = data.weather[0].icon;
-    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-    // console.log(iconurl);
     const {icon} = data.weather[0];
     titleEl.innerHTML = 
         "<h3>" + data.name + ", " + data.sys.country + "</h3>" + "<br/>" + 
@@ -136,7 +156,7 @@ const displayWeather = (data, searchTerm) => {
         "Windspeed: " + data.wind.speed + " mph" + "<br/>" +
         "Humidity: " + data.main.humidity + "%"
         ;
-        let locationIcon = document.querySelector('.weather-icon');
+        // let locationIcon = document.querySelector('.weather-icon');
 
     currentWeather.appendChild(titleEl);
     // currentWeather.appendChild(windEl);
@@ -147,8 +167,6 @@ const displayWeather = (data, searchTerm) => {
 const displayFiveWeatherData = (data, cityname) => {
     fiveDayContainerEl.textContent = '';
     const fiveCurrentWeather = document.createElement("div");
-    fiveCurrentWeather.innerHTML = `
-    `
     fiveDayContainerEl.appendChild(fiveCurrentWeather);
     let dayOne = data.list[0];
     let dayTwo = data.list[8];
@@ -159,8 +177,7 @@ const displayFiveWeatherData = (data, cityname) => {
     // package all days into one array
     let dayArray = [dayOne, dayTwo, dayThree, dayFour, dayFive];
 
- 
-    console.log(dayArray[1]);
+
     // create a loop to go through each 
     for (let i = 0; i < dayArray.length; i++) {
         let timeMil = dayArray[i].dt;
@@ -169,10 +186,6 @@ const displayFiveWeatherData = (data, cityname) => {
         var editDay = dayjs(day).format('MM/DD/YYYY');
 
         const iconCode = dayArray[i].weather[0].icon;
-        console.log(iconCode);
-
-
-        // var icon = weather.icon;
 
         // create day container
         const dayEl = document.createElement("div");
