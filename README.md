@@ -1,6 +1,7 @@
 # Accu-Dash
 
 * An weather app made with javascript, Materialize css, and the Open Weather One Call API.
+* Live link: https://pfizzz.github.io/weather2/
 
 ![image](https://github.com/Pfizzz/weather2/blob/887bb80d1064efe1ab5cf8bb1c85da87de737bc9/assets/images/ss1.png)
 
