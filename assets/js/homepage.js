@@ -108,6 +108,7 @@ const formSubmitHandler = (event) => {
         const userDataObj = {
           name: cityname
         }
+        
         cityName.push(userDataObj);
         window.localStorage.setItem("cityname", JSON.stringify(cityName));
 
