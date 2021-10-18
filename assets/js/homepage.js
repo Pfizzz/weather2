@@ -38,7 +38,7 @@ const clearStorage = () => {
 }
 
 const getWeatherInfo = (cityname) => {
-    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&appid=" + key + "&units=imperial";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&appid=" + key + "&units=imperial";
     fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
@@ -55,7 +55,7 @@ const getWeatherInfo = (cityname) => {
 
 // function to get five day forecast
 const getFiveWeatherInfo = (cityname) => {
-    var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityname + "&appid=" + key + "&units=imperial";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityname + "&appid=" + key + "&units=imperial";
     fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
