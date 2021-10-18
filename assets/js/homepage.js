@@ -3,6 +3,8 @@ const cityFormEl = document.querySelector("#city-form");
 const cityInputEl = document.querySelector("#cityname");
 const weatherContainerEl = document.querySelector("#weathers-container");
 const weatherSearchTerm = document.querySelector("#weather-search-term");
+const fiveDayContainerEl = document.querySelector("#five-day-container");
+
 
 const getWeatherInfo = (cityname) => {
     var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&appid=" + key + "&units=imperial";
@@ -73,9 +75,31 @@ const displayWeather = (data, searchTerm) => {
 };
 
 const displayFiveWeatherData = (data, cityname) => {
-    console.log("connect to display five day");
-    console.log(data);
-}
+    fiveDayContainerEl.textContent = '';
+    const fiveCurrentWeather = document.createElement("div");
+    fiveCurrentWeather.innerHTML = `
+    `
+    fiveDayContainerEl.appendChild(fiveCurrentWeather);
+    let dayOne = data.list[0];
+    let dayTwo = data.list[8];
+    let dayThree = data.list[16];
+    let dayFour = data.list[24];
+    let dayFive = data.list[32];
+    console.log(dayOne, dayTwo, dayThree, dayFour, dayFive);
+    // package all days into one array
+    let dayArray = [dayOne, dayTwo, dayThree, dayFour, dayFive];
+    console.log(dayArray[1]);
+    // create a loop to go through each 
+    for (let i = 0; i < dayArray.length; i++) {
+        console.log("for loop");
+        // create day container
+        const dayEl = document.createElement("div");
+        dayEl.textContent = "test";
+        fiveCurrentWeather.appendChild(dayEl);
+    }
+
+
+};
 
 
 
