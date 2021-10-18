@@ -8,39 +8,47 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Wedda-Dash</title>
+    <title>Accu-Dash</title>
 </head>
 <body>
     <header class="hero">
-      <h1 class="app-title"><i class="fab fa-superpowers"></i> Wedda-Dash</h1>
+      <h1 class="app-title"><i class="fab fa-superpowers"></i> Accu-Dash</h1>
     </header>
   
   
     <main class="" id="app-wrapper">
       <div class="row" id="row-wrapper">
-      <div class="col s12 m12 l4" id="search-column-wrapper">
-        <div class="card">
-          <h3 class="card-header">Search For A City</h3>
+      <div class="col s12 m12 l4 wrap" id="search-column-wrapper">
+        <div class="card z-depth-4">
+          <h3 class="card-header">City Search</h3>
           <form id="city-form" class="card-body">
             <label class="form-label" for="cityname">City</label>
             <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" />
-            <button type="submit" class="btn valign-center">Get City</button>
+            <button type="submit" class="btn blue-darken-2 valign-center white-text z-depth-2">Get City</button>
+
           </form>
         </div>
-        <div class="card">
-          <h3 class="card-header">Saved Cities</h3>
+        <div class="card z-depth-4">
+          <h4 class="card-header">History</h4>
           <div class="card-body text-uppercase" id="saved-cities">
+
           </div>
+          <button class="col s 10 btn red white-text" id="clear">Clear History</button>
+          <p class="center-align">&copy; 2021 Pfizz. Visit my <span><a href="https://github.com/Pfizzz/">Github</a>.</span></p>
         </div>
       </div>
-      <div class="col s12 m12 l8 white z-depth-2" id="weather-column-wrapper">
+      <div class="col s12 m12 l8 white wrap z-depth-4" id="weather-column-wrapper">
       <div class="" id="weather-wrapper">
-        <h2 class="">Showing Weather for: <span id="weather-search-term"></span></h2>
+        <br/>
+        <h3 class="">Showing Weather for: <span id="weather-search-term"></span></h3>
+        <br/>
         <div id="weathers-container" class=""></div>
+        
       </div>
 
       <div class="" id="five-day-wrapper">
-        <h3 class="">Five Day Forecast</h3>
+        <h4 class="">Five Day Forecast</h4>
+        <br/>
         <div id="five-day-container"></div>
       </div>
     </div>

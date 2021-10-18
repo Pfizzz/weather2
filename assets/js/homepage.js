@@ -5,6 +5,7 @@ const weatherContainerEl = document.querySelector("#weathers-container");
 const weatherSearchTerm = document.querySelector("#weather-search-term");
 const fiveDayContainerEl = document.querySelector("#five-day-container");
 const savedCityEl = document.querySelector("#saved-cities");
+const clearButton = document.querySelector("#clear");
 
 
 const loadPage = () => {
@@ -14,7 +15,7 @@ const loadPage = () => {
             console.log(savedCities[i].name);
             const loadButton = document.createElement("button");
             loadButton.textContent = savedCities[i].name;
-            loadButton.classList = 'btn';
+            loadButton.classList = 'btn white-text';
             savedCityEl.appendChild(loadButton);
 
         }
@@ -23,6 +24,17 @@ const loadPage = () => {
         // scoreBox.innerHTML = ``;
         // scoreEl.appendChild(scoreBox);
         // console.log(highscores);
+}
+
+const loadCityHandler = (e) => {
+    var cityname = e.textContent;
+    getWeatherInfo(cityname);
+}
+
+// clear local storage
+const clearStorage = () => {
+    window.localStorage.removeItem("cityname");
+    window.location.reload();
 }
 
 const getWeatherInfo = (cityname) => {
@@ -87,16 +99,13 @@ const generateButton = (cityname) => {
     const cityButtonWr = document.createElement("div");
     savedCityEl.appendChild(cityButtonWr);
     const cityButton = document.createElement("button");
-    cityButton.classList = "btn";
+    cityButton.classList = "btn white-text";
     cityButton.textContent = cityname;
     cityButtonWr.appendChild(cityButton);
 
 }
 
 const displayWeather = (data, searchTerm) => {
-    // console.log(data);
-    // console.log(searchTerm);
-    // console.log("displayweather works");
     weatherContainerEl.textContent = '';
     weatherSearchTerm.textContent = '';
     var currentWeather = document.createElement("div");
@@ -181,5 +190,8 @@ const displayFiveWeatherData = (data, cityname) => {
 
 loadPage();
 
-
+clearButton.addEventListener("click", clearStorage);
 cityFormEl.addEventListener("submit", formSubmitHandler);
+savedCityEl.addEventListener("click", (e) => {
+    loadCityHandler(e.target);
+})

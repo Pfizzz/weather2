@@ -1,7 +1,7 @@
 :root {
     --primary: #59c2ff;
     --secondary: #9caea9;
-    --tertiary: #788585;
+    --tertiary: #01039c;
     --light-dark: #1754fc;
     --dark: #0e0147;
     --border-radius: .3rem;
@@ -12,7 +12,11 @@
   }
   
   body {
-    background-color: var(--primary);
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover; 
     margin: 0;
     padding: 0;
     font-family: "IBM Plex Sans", sans-serif;
@@ -45,7 +49,6 @@
    .btn {
     font-size: 1.3rem;
     text-decoration:none;
-    padding: 6px 5px;
     width: 100%;
     display: block;
     margin: 5px 0;
@@ -96,6 +99,7 @@
     padding: 3% 4%;
     background-color: var(--dark);
     color: var(--primary);
+    opacity: 0.75;
   }
   
   .hero p {
@@ -117,14 +121,6 @@
     list-style: none;
   }
   
-  .list-item {
-    margin-bottom: 10px;
-    padding: 1.5%;
-    border-radius: var(--border-radius);
-    background-color: var(--light-dark);
-    color: var(--primary);
-    text-decoration: none;
-  }
   
   .list-item:hover {
     background-color: var(--dark);
@@ -148,7 +144,7 @@
   /* CARDS */
   .card {
     margin: 0 0 20px 0;
-    border: 3px solid var(--dark);
+    /* border: 3px solid var(--dark); */
     border-radius: var(--border-radius);
   }
   
@@ -199,55 +195,12 @@
   }
   
   
-  /* FLEX CONTENT */
-  .flex-row {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .flex-column {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
-  
-  .justify-space-between {
-    justify-content: space-between;
-  }
-  
-  .justify-space-around {
-    justify-content: space-around;
-  }
-  
-  .justify-flex-start {
-    justify-content: flex-start
-  }
-  
-  .justify-flex-end {
-    justify-content: flex-end;
-  }
-  
-  .justify-center {
-    justify-content: center;
-  }
-  
-  .align-stretch {
-    align-items: stretch;
-  }
-  
-  .align-end {
-    align-items: flex-end;
-  }
-  
-  .align-center {
-    align-items: center;
-  }
-  
-  .col-auto {
-    flex-grow: 1;
-  }
-  
   .weather-icon img {
     width: 75px;
     justify-content: center;
+  }
+
+  .wrap {
+    opacity: 0.93;
+    border-radius: 30px;
   }
