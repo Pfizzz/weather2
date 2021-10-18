@@ -10,20 +10,21 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Wedda-Dash</title>
 </head>
-<body class="flex-column min-100-vh">
+<body>
     <header class="hero">
       <h1 class="app-title"><i class="fab fa-superpowers"></i> Wedda-Dash</h1>
     </header>
   
   
-    <main class="flex-row justify-space-between">
-      <div class="col-12 col-md-4">
+    <main class="" id="app-wrapper">
+      <div class="row" id="row-wrapper">
+      <div class="col s4" id="search-column-wrapper">
         <div class="card">
           <h3 class="card-header text-uppercase">Search For A City</h3>
           <form id="city-form" class="card-body">
             <label class="form-label" for="cityname">City</label>
             <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" />
-            <button type="submit" class="btn">Get City</button>
+            <button type="submit" class="btn valign-center">Get City</button>
           </form>
         </div>
         <div class="card">
@@ -32,17 +33,18 @@
           </div>
         </div>
       </div>
-  
-      <div class="col-12 col-md-8" id="weather-wrapper">
-        <h2 class="subtitle">Showing Weather for: <span id="weather-search-term"></span></h2>
-        <div id="weathers-container" class="list-group"></div>
+      <div class="col s8 white z-depth-2" id="weather-column-wrapper">
+      <div class="" id="weather-wrapper">
+        <h2 class="">Showing Weather for: <span id="weather-search-term"></span></h2>
+        <div id="weathers-container" class=""></div>
       </div>
 
-      <div class="col-12 col-md-8" id="five-day-wrapper">
-        <h2 class="subtitle">Five Day Forecast</h2>
+      <div class="" id="five-day-wrapper">
+        <h2 class="">Five Day Forecast</h2>
         <div id="five-day-container"></div>
       </div>
-  
+    </div>
+    </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
             

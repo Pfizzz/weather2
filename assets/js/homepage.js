@@ -6,27 +6,27 @@ const weatherSearchTerm = document.querySelector("#weather-search-term");
 const fiveDayContainerEl = document.querySelector("#five-day-container");
 
 
+
+
 const getWeatherInfo = (cityname) => {
     var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&appid=" + key + "&units=imperial";
-    console.log(apiUrl);
     fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (data) {
-                    // console.log(data);
+
                     displayWeather(data, cityname);
                 })
             } else {
                 alert("response error with fetching weather data");
-        }
-    });
+            }
+        });
     getFiveWeatherInfo(cityname);
 };
 
 // function to get five day forecast
 const getFiveWeatherInfo = (cityname) => {
     var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityname + "&appid=" + key + "&units=imperial";
-    console.log(apiUrl);
     fetch(apiUrl)
         .then(function (response) {
             if (response.ok) {
@@ -37,7 +37,7 @@ const getFiveWeatherInfo = (cityname) => {
             } else {
                 alert("response error with get 5-day fetch request")
             }
-        })         
+        })
 };
 
 const formSubmitHandler = (event) => {
@@ -56,17 +56,37 @@ const displayWeather = (data, searchTerm) => {
     // console.log(searchTerm);
     // console.log("displayweather works");
     weatherContainerEl.textContent = '';
-    weatherSearchTerm.textContent = searchTerm;
+    weatherSearchTerm.textContent = '';
     var currentWeather = document.createElement("div");
     var titleEl = document.createElement("span");
-    titleEl.innerHTML = "<h3>" + data.name + data.dt + "</h3>" +
-        "Current Temperature: " + data.main.temp + "&#8457" +
-        "</br> Windspeed: " + data.wind.speed + " mph" +
-        "</br> Humidity: " + data.main.humidity + "%"
-        // "</br> UV index: " +data.uvi;
-        ;
 
-    // console.log(data.main);
+    var timezone = data.timezone;
+    // console.log(timezone);
+    d = new Date()
+    localTime = d.getTime()
+    localOffset = d.getTimezoneOffset() * 60000
+    utc = localTime + localOffset
+    var algo = utc + (1000 * timezone)
+    nd = new Date(algo)
+
+    var description = data.weather[0].description;
+    console.log(description);
+
+    var iconcode = data.weather[0].icon;
+    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    console.log(iconurl);
+    const {icon} = data.weather[0];
+    titleEl.innerHTML = 
+        "<h3>" + data.name + ", " + data.sys.country + "</h3>" + "<br/>" + 
+        nd + "<br/>" +
+        `<div class="weather-icon"><img src="assets/icons/${icon}.png" /></div>` +
+        "Currently: " + description + "<br/>" +
+    
+        "Temperature: " + data.main.temp + "&#8457" + "<br/>" +
+        "Windspeed: " + data.wind.speed + " mph" + "<br/>" +
+        "Humidity: " + data.main.humidity + "%"
+        ;
+        let locationIcon = document.querySelector('.weather-icon');
 
     currentWeather.appendChild(titleEl);
     // currentWeather.appendChild(windEl);
@@ -85,10 +105,10 @@ const displayFiveWeatherData = (data, cityname) => {
     let dayThree = data.list[16];
     let dayFour = data.list[24];
     let dayFive = data.list[32];
-    console.log(dayOne, dayTwo, dayThree, dayFour, dayFive);
+    // console.log(dayOne, dayTwo, dayThree, dayFour, dayFive);
     // package all days into one array
     let dayArray = [dayOne, dayTwo, dayThree, dayFour, dayFive];
-    console.log(dayArray[1]);
+    // console.log(dayArray[1]);
     // create a loop to go through each 
     for (let i = 0; i < dayArray.length; i++) {
         // create day container
