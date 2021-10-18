@@ -40,11 +40,13 @@ const getFiveWeatherInfo = (cityname) => {
         })
 };
 
+
 const formSubmitHandler = (event) => {
     event.preventDefault();
     var cityname = cityInputEl.value.trim();
     if (cityname) {
         getWeatherInfo(cityname);
+        // push the search term up to the local sotrage array,
         cityInputEl.value = '';
     } else {
         alert("Please enter a city name!");
@@ -127,17 +129,14 @@ const displayFiveWeatherData = (data, cityname) => {
         const dayEl = document.createElement("div");
         dayEl.classList = "col s2 center-align";
         dayEl.innerHTML = 
-        "<div class='card-wrapper row center-align'>" +
+        "<div class='card-wrapper row center-align z-depth-4 blue lighten-4 '>" +
         editDay + `
         <div class="weather-icon responsive-img"><img src="assets/icons/${iconCode}.png" /></div>` + `
         <span>Temp: </span>` + dayArray[i].main.temp + "<br/>" + `
         <span>Wind: </span>` + dayArray[i].wind.speed + "<br/>" + ` 
         <span>Humidity :</span>` + dayArray[i].main.humidity + "</div>";
         fiveCurrentWeather.appendChild(dayEl);
-
     }
-
-
 };
 
 
