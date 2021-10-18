@@ -70,16 +70,15 @@ const displayWeather = (data, searchTerm) => {
     nd = new Date(algo)
 
     var description = data.weather[0].description;
-    console.log(description);
 
     var iconcode = data.weather[0].icon;
     var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-    console.log(iconurl);
+    // console.log(iconurl);
     const {icon} = data.weather[0];
     titleEl.innerHTML = 
         "<h3>" + data.name + ", " + data.sys.country + "</h3>" + "<br/>" + 
         nd + "<br/>" +
-        `<div class="weather-icon"><img src="assets/icons/${icon}.png" /></div>` +
+        `<div class=""><img src="assets/icons/${icon}.png" /></div>` +
         "Currently: " + description + "<br/>" +
     
         "Temperature: " + data.main.temp + "&#8457" + "<br/>" +
@@ -108,15 +107,34 @@ const displayFiveWeatherData = (data, cityname) => {
     // console.log(dayOne, dayTwo, dayThree, dayFour, dayFive);
     // package all days into one array
     let dayArray = [dayOne, dayTwo, dayThree, dayFour, dayFive];
-    // console.log(dayArray[1]);
+
+ 
+    console.log(dayArray[1]);
     // create a loop to go through each 
     for (let i = 0; i < dayArray.length; i++) {
+        let timeMil = dayArray[i].dt;
+        // console.log(timeMil.toString());
+        var day = dayjs.unix(timeMil);
+        var editDay = dayjs(day).format('MM/DD/YYYY');
+
+        const iconCode = dayArray[i].weather[0].icon;
+        console.log(iconCode);
+
+
+        // var icon = weather.icon;
+
         // create day container
         const dayEl = document.createElement("div");
-        dayEl.innerHTML = `
-        <p>Humidity</p>` + dayArray[i].main.humidity + ` 
-        <p>Temperature:</p>` + dayArray[i].main.temp;
+        dayEl.classList = "col s2 center-align";
+        dayEl.innerHTML = 
+        "<div class='card-wrapper row center-align'>" +
+        editDay + `
+        <div class="weather-icon responsive-img"><img src="assets/icons/${iconCode}.png" /></div>` + `
+        <span>Temp: </span>` + dayArray[i].main.temp + "<br/>" + `
+        <span>Wind: </span>` + dayArray[i].wind.speed + "<br/>" + ` 
+        <span>Humidity :</span>` + dayArray[i].main.humidity + "</div>";
         fiveCurrentWeather.appendChild(dayEl);
+
     }
 
 
