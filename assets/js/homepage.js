@@ -4,9 +4,26 @@ const cityInputEl = document.querySelector("#cityname");
 const weatherContainerEl = document.querySelector("#weathers-container");
 const weatherSearchTerm = document.querySelector("#weather-search-term");
 const fiveDayContainerEl = document.querySelector("#five-day-container");
+const savedCityEl = document.querySelector("#saved-cities");
 
 
+const loadPage = () => {
+        let savedCities = JSON.parse(window.localStorage.getItem("cityname")) || [];
+        // write a for loop to iterate through this
+        for (let i = 0; i < savedCities.length; i++) {
+            console.log(savedCities[i].name);
+            const loadButton = document.createElement("button");
+            loadButton.textContent = savedCities[i].name;
+            loadButton.classList = 'btn';
+            savedCityEl.appendChild(loadButton);
 
+        }
+        // const scoreBox = document.createElement("div");
+        // scoreBox.classList = "center-align";
+        // scoreBox.innerHTML = ``;
+        // scoreEl.appendChild(scoreBox);
+        // console.log(highscores);
+}
 
 const getWeatherInfo = (cityname) => {
     var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&appid=" + key + "&units=imperial";
@@ -46,12 +63,35 @@ const formSubmitHandler = (event) => {
     var cityname = cityInputEl.value.trim();
     if (cityname) {
         getWeatherInfo(cityname);
-        // push the search term up to the local sotrage array,
+        // send to generateButton function
+        generateButton(cityname);
+        // local storage,
+        var cityName =
+        JSON.parse(window.localStorage.getItem("cityname")) || [];
+        const userDataObj = {
+          name: cityname
+        }
+        cityName.push(userDataObj);
+        window.localStorage.setItem("cityname", JSON.stringify(cityName));
+
         cityInputEl.value = '';
     } else {
         alert("Please enter a city name!");
     }
 };
+
+// create function to generate button in saved cities
+const generateButton = (cityname) => {
+    console.log(cityname);
+    savedCityEl.classList = '';
+    const cityButtonWr = document.createElement("div");
+    savedCityEl.appendChild(cityButtonWr);
+    const cityButton = document.createElement("button");
+    cityButton.classList = "btn";
+    cityButton.textContent = cityname;
+    cityButtonWr.appendChild(cityButton);
+
+}
 
 const displayWeather = (data, searchTerm) => {
     // console.log(data);
@@ -139,7 +179,7 @@ const displayFiveWeatherData = (data, cityname) => {
     }
 };
 
-
+loadPage();
 
 
 cityFormEl.addEventListener("submit", formSubmitHandler);
