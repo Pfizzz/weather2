@@ -91,10 +91,11 @@ const displayFiveWeatherData = (data, cityname) => {
     console.log(dayArray[1]);
     // create a loop to go through each 
     for (let i = 0; i < dayArray.length; i++) {
-        console.log("for loop");
         // create day container
         const dayEl = document.createElement("div");
-        dayEl.textContent = "test";
+        dayEl.innerHTML = `
+        <p>Humidity</p>` + dayArray[i].main.humidity + ` 
+        <p>Temperature:</p>` + dayArray[i].main.temp;
         fiveCurrentWeather.appendChild(dayEl);
     }
 
