@@ -16,7 +16,7 @@ Using the localStorage() API, data persists after the user's session, and previo
 ## What's new
 
 * This is a resubmission. The original, non-functional app's repo may be viewed at https://github.com/Pfizzz/weatherDash.
-* The One Call API's UV feature appears to be broken. Although making queries using latitude and longitutde returned the targetted piece of data, no atter where I search, the UVI is always zero. 
+* The One Call API's UV feature appears to be no longer supported and/or broken. Although making queries using latitude and longitutde returned every targetted piece of data, no matter what city is searched, the returned UVI is always zero. 
 
 ![image](https://github.com/Pfizzz/weather2/blob/887bb80d1064efe1ab5cf8bb1c85da87de737bc9/assets/images/ss3.png)
 
@@ -24,4 +24,4 @@ For example, it is unlikely that the UVI in Sydney is zero.
 
 ![image](https://github.com/Pfizzz/weather2/blob/887bb80d1064efe1ab5cf8bb1c85da87de737bc9/assets/images/ss2.png)
 
-And here is Spain. I have console.logs rigged to display each location's data, but I have forgone including the function in my HTML, as I believe it is broken.
+And here is Spain. I have console.logs rigged to display each location's data, but I have forgone including their UVI feature in my project, as I believe it is no longer a functional part of the API.
